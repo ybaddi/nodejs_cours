@@ -27,7 +27,7 @@ async function updatePersonnes(id, personne){
     const fields = Object.keys(personne).filter(key => personne[key]!=undefined);
     console.log(fields);
 
-    const queryFields = fields.map(field=>`${field}=${personne[field]}`).join(',');
+    const queryFields = fields.map(field=>`${field}='${personne[field]}'`).join(',');
     console.log(queryFields);
 
     const resultat = await db.query(`
@@ -45,7 +45,7 @@ async function updatePersonnes(id, personne){
 
 
 async function delPersonnes(id){
-    console.log(personne);
+    console.log(id);
     const resultat = await db.query(`
         DELETE from personnes where id=${id}
         `);
